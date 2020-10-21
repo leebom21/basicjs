@@ -5,6 +5,23 @@ const form = document.querySelector(".js-form"),
     const USER_LS = "currentUser",
         SHOWING_CN = "showing";
 
+        function saveName(text) {
+            localStorage.setItem(USER_LS, text);
+        }
+
+    function handleSubmit(event) {
+        event.preventDefault();   //Enter를 눌러도 입력값이 날라가지않게 방지
+        const currentValue = input.value;
+        paintGreeting(currentValue);
+        saveName(currentValue)
+    }
+
+    function askforName() {
+        form.classList.add(SHOWING_CN);
+        form.addEventListener("submit", handleSubmit);
+    
+    }
+
     function paintGreeting(text) {
         form.classList.remove(SHOWING_CN);
         greeting.classList.add(SHOWING_CN);
@@ -14,7 +31,7 @@ const form = document.querySelector(".js-form"),
     function loadName() {
         const currentUser = localStorage.getItem(USER_LS);
         if (currentUser === null) {
-
+            askforName();
         } else {
             paintGreeting(currentUser);
         }
