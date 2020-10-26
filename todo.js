@@ -5,7 +5,18 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS  = 'toDos';
 
-const toDos = []; // 비어있는 array 생성
+let toDos = []; // 비어있는 array 생성
+
+function deleteToDo(event) {
+    const btn = event.target;
+    const li = btn.parentNode;
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo) {
+        return toDo.id !== parseInt(li.id);  //  parseInt(li.id); -> 스트링을 숫자로 변경
+    });
+   toDos = cleanToDos;
+   saveToDos();
+}
 
 function saveToDos() {  //로컬 스트리지에 저장
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));  //JSON.stringify -> 자바스크립트 odj를 string으로 바꿔줌.
@@ -16,7 +27,8 @@ function paintToDo(text) {
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
     const newId = toDos.length + 1;
-    delBtn.innerText = "❌"
+    delBtn.innerText = "❌";
+    delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     li.appendChild(span);
     li.id = newId;
