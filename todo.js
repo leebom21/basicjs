@@ -1,9 +1,10 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
-        toDoInput = toDoForm.querySelector("input"),
         toDoList = document.querySelector(".js-toDoList");
+    toDoInput = toDoForm.querySelector("input"),
+    toDoList = document.querySelector(".js-toDoList");
 
 
-const TODOS_LS  = 'toDos';
+const TODOS_LS = 'toDos';
 
 let toDos = []; // 비어있는 array 생성
 
@@ -12,14 +13,14 @@ function deleteToDo(event) {
     const li = btn.parentNode;
     toDoList.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo) {
-        return toDo.id !== parseInt(li.id);  //  parseInt(li.id); -> 스트링을 숫자로 변경
+        return toDo.id !== parseInt(li.id); //  parseInt(li.id); -> 스트링을 숫자로 변경
     });
-   toDos = cleanToDos;
-   saveToDos();
+    toDos = cleanToDos;
+    saveToDos();
 }
 
-function saveToDos() {  //로컬 스트리지에 저장
-    localStorage.setItem(TODOS_LS, JSON.stringify(toDos));  //JSON.stringify -> 자바스크립트 odj를 string으로 바꿔줌.
+function saveToDos() { //로컬 스트리지에 저장
+    localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); //JSON.stringify -> 자바스크립트 odj를 string으로 바꿔줌.
 }
 
 function paintToDo(text) {
@@ -37,7 +38,7 @@ function paintToDo(text) {
     const toDoObj = {
         text: text,
         id: newId
-    };      
+    };
     toDos.push(toDoObj);
     saveToDos();
 }
@@ -60,7 +61,7 @@ function loadToDos() {
         parsedToDos.forEach(function(toDo) {
             paintToDo(toDo.text);
         });
-    } 
+    }
 }
 
 function init() {
