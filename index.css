@@ -2,6 +2,12 @@ body {
     color: #222;
 }
 
+.js-clock {
+    color:#fff
+}
+.js-toDoList li {
+    color: #fff;
+}
 .form,
 .greetings {
     display: none;
@@ -9,6 +15,7 @@ body {
 
 .showing {
     display: block;
+    color:#fff
 }
 
 @keyframes fadeIn {
